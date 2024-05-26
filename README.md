@@ -15,10 +15,10 @@ To install and run the application easily follow the following steps.
 1. Clone the repository:
    https://github.com/PantelisKirmizis/AP_platform_project.git
 2. Navigate to the project directory.
-3. Run the application.
+3. Run the application (app_final.py).
 
 ## How to use
-To easily use and navigate the platform follow the folloing steps.
+To easily use and navigate the platform follow the following steps.
 1. Run the application.
 2. Open your web browser and go to http://127.0.0.1:8050 to access the dashboard.
 3. Enter the stock tickers, exactly as they appear on Yahoo Finance, and investment amounts in a dictionary format {Ticker1: Value1, Ticker2: Value2, ...}.
