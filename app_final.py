@@ -41,9 +41,9 @@ app.layout = html.Div(
 
         html.Div(
             html.P("Enter your desired stock tickers (exactly as they appear on Yahoo Finance) and the total amount "
-               "invested for each security in your portfolio in a dictionary format (Ticker1: Value1, Ticker2: "
-               "Value2...). Select a benchmark ticker and a date range (dd/mm/yyyy), then click Submit to show "
-               "results. ",
+                   "invested for each security in your portfolio in a dictionary format (Ticker1: Value1, Ticker2: "
+                   "Value2...). Select a benchmark ticker and a date range (dd/mm/yyyy). Select dates when the market was open. "
+                   "Then click Submit to show results. ",
                style={'text-align': 'center'}
                ),
             style={'max-width': '800px', 'margin': '0 auto', 'padding-top': 20}
@@ -110,11 +110,22 @@ def update_graphs(n_clicks, assets_and_investments, benchmark, start_date, end_d
                      start=date_from, end=date_to)
 
     # If one or all tickers given start after start date given, do not do anything!
-    for ticker in assets_and_investments.keys():
-        first_valid_index = df['Adj Close'][ticker].first_valid_index()
-        if first_valid_index.strftime('%Y-%m-%d') > start_date:
+    if len(df) == 0:
+        return html.Div(html.H4("Data unavailable for one or all selected tickers for the given date range!", style={'margin-top': 20,
+                                'text-align': 'center', 'color': 'red'}))
+
+    if len(assets_and_investments.keys()) == 1:
+        first_valid_index = df['Adj Close'].to_frame().first_valid_index()
+        if first_valid_index and first_valid_index.strftime('%Y-%m-%d') > start_date:
             return html.Div(html.H4("Data unavailable for one or all selected tickers for the given date range!", style={'margin-top': 20,
-                                                                                        'text-align': 'center', 'color': 'red'}))
+                                    'text-align': 'center', 'color': 'red'}))
+
+    if len(assets_and_investments.keys()) > 1:
+        for ticker in assets_and_investments.keys():
+            first_valid_index = df['Adj Close'][ticker].first_valid_index()
+            if first_valid_index.strftime('%Y-%m-%d') > start_date:
+                return html.Div(html.H4("Data unavailable for one or all selected tickers for the given date range!", style={'margin-top': 20,
+                                        'text-align': 'center', 'color': 'red'}))
 
 # CALCULATION OF SOME COMMON VALUES ACROSS MULTIPLE FUNCTIONS
     
