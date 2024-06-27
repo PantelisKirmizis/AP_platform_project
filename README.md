@@ -23,7 +23,7 @@ To easily use and navigate the platform follow the following steps.
 2. Open your web browser and go to http://127.0.0.1:8050 to access the dashboard.
 3. Enter the stock tickers, exactly as they appear on Yahoo Finance, and investment amounts in a dictionary format {Ticker1: Value1, Ticker2: Value2, ...}.
 4. Enter the benchmark ticker, exactly as it appears on Yahoo Finance.
-5. Select the date range for analysis in a dd/mm/yyyy format.
+5. Select the date range for analysis in a dd/mm/yyyy format. Select dates when the stock market was open.
 6. Click the "Submit" button to generate the graphs and the table.
 7. Click the "Initial/Current" buttons to navigate between the graphs using current data and initial data.
 8. Use the "Export Report to PDF" button to download a PDF report of your portfolio.
